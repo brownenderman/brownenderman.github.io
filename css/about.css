@@ -1,0 +1,160 @@
+/* =========================================================
+   about.css — about.html only
+   ========================================================= */
+
+.about-hero{
+  position: relative;
+  padding-block: clamp(2.5rem, 6vw, 4rem) 1rem;
+  max-width: 760px;
+}
+.about-doodle-scribble{
+  position: absolute;
+  top: -6px;
+  right: var(--gutter);
+  width: 140px;
+}
+.about-intro{ font-size: 1.08rem; }
+
+/* ---------------- education ---------------- */
+.edu-list{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.edu-item{
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.5rem;
+  padding-block: 1.4rem;
+  border-top: 1.5px solid var(--line);
+}
+.edu-item:last-child{ border-bottom: 1.5px solid var(--line); }
+.edu-period{
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--amber-600);
+  font-weight: 700;
+}
+.edu-body h3{ margin-bottom: 0.25em; }
+
+@media (max-width: 620px){
+  .edu-item{ grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+/* ---------------- skills (reused pattern from home) ---------------- */
+.about-skills-grid{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem 2rem;
+}
+.about-skills-grid .skill{
+  padding: 1.3rem 0;
+  border-top: 1.5px solid var(--line);
+}
+.skill-mark{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--amber-100);
+  color: var(--amber-600);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-display);
+}
+@media (max-width: 760px){
+  .about-skills-grid{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px){
+  .about-skills-grid{ grid-template-columns: 1fr; }
+}
+
+/* ---------------- band ---------------- */
+.band{ text-align: center; }
+.band-quote{
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  color: var(--paper);
+  margin: 0;
+}
+
+/* ---------------- work history ---------------- */
+.history-list{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.history-item{
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.7rem;
+}
+.history-head{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.history-head h3{ margin: 0; font-size: 1.15rem; }
+.history-company{
+  color: var(--teal-700);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin: 0.3em 0 0.6em;
+}
+
+/* ---------------- CTA ---------------- */
+.about-cta{ padding-top: 0; }
+.cta-card{
+  position: relative;
+  overflow: hidden;
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+  background: var(--paper-deep);
+  border-radius: 20px;
+  padding: clamp(2rem, 5vw, 3rem);
+}
+.cta-doodle{
+  position: absolute;
+  top: -14px;
+  right: -10px;
+  width: 90px;
+  opacity: 0.7;
+}
+
+/* ---------------- reading progress ---------------- */
+.reading-progress{
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--amber-600);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ---------------- current role badge ---------------- */
+.history-item.is-current{
+  border-color: var(--amber-500);
+  position: relative;
+}
+.history-item.is-current .history-head h3::after{
+  content: "";
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amber-600);
+  margin-left: 0.6em;
+  vertical-align: middle;
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+@keyframes pulse-dot{
+  0%, 100%{ opacity: 1; transform: scale(1); }
+  50%{ opacity: 0.4; transform: scale(1.4); }
+}

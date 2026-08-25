@@ -1,0 +1,122 @@
+/* =========================================================
+   work.css — work.html only
+   ========================================================= */
+
+.work-hero{
+  max-width: 700px;
+  padding-block: clamp(2.5rem, 6vw, 4rem) 1rem;
+}
+
+.projects-grid{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
+  perspective: 1000px;
+}
+
+.project-card{
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.project-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 6px 8px 0 var(--amber-100);
+}
+
+.project-thumb{
+  margin: -1.6rem -1.6rem 0.6rem;
+  border-bottom: 1.5px solid var(--line);
+  overflow: hidden;
+}
+.project-thumb img{
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s var(--ease);
+}
+.project-card:hover .project-thumb img{ transform: scale(1.03); }
+
+.project-status{ align-self: flex-start; }
+.project-status.is-live{
+  background: #DCE8DE;
+  color: #2F5C3C;
+  border: 1px solid #8FB89B;
+}
+
+.project-card h3{ margin-top: 0.4rem; }
+
+.project-tech{
+  font-size: 0.85rem;
+  color: var(--sage-500);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.project-tech-list{
+  list-style: none;
+  margin: 0.4rem 0 0.2rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.project-tech-list li{
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--teal-700);
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25em 0.7em;
+}
+
+.project-link{
+  align-self: flex-start;
+  margin-top: 0.6rem;
+}
+.project-link svg{ margin-left: 0.1em; }
+.project-link.is-disabled{
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (max-width: 700px){
+  .projects-grid{ grid-template-columns: 1fr; }
+}
+
+/* ---------------- project zero ---------------- */
+.project-zero{ padding-top: 0; }
+.zero-card{
+  position: relative;
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+  background: var(--paper-deep);
+  border-radius: 20px;
+  padding: clamp(2rem, 5vw, 3rem);
+  overflow: hidden;
+}
+.zero-doodle{
+  position: absolute;
+  top: -18px;
+  right: 6%;
+  width: 70px;
+  opacity: 0.8;
+}
+
+/* ---------------- band ---------------- */
+.band{ text-align: center; }
+.band-quote{
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  color: var(--paper);
+  margin: 0;
+}

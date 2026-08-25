@@ -1,0 +1,405 @@
+/* =========================================================
+   RAKSHA DOERGA — PORTFOLIO
+   main.css — design tokens, reset, layout, nav, footer, buttons
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap');
+
+:root{
+  /* ---- palette, pulled from the portrait's own skin + shirt tones ---- */
+  --paper: #F4EEE0;
+  --paper-deep: #EAE0C8;
+  --cream: #FBF8F0;
+  --ink: #22302C;
+  --ink-soft: #4A5652;
+  --teal-900: #263A38;
+  --teal-700: #3E5A56;
+  --sage-500: #74897F;
+  --amber-600: #B97940;
+  --amber-500: #C98D51;
+  --amber-400: #DBA872;
+  --amber-100: #F1DDBE;
+  --line: rgba(34,48,44,0.16);
+
+  /* ---- type ---- */
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  /* ---- layout ---- */
+  --max-w: 1180px;
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --radius: 14px;
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(.22,.9,.32,1);
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body{
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(rgba(34,48,44,0.05) 0.6px, transparent 0.6px),
+    radial-gradient(rgba(34,48,44,0.035) 0.6px, transparent 0.6px);
+  background-size: 26px 26px, 26px 26px;
+  background-position: 0 0, 13px 13px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><line x1="6" y1="30" x2="26" y2="8" stroke="%23263A38" stroke-width="4.5" stroke-linecap="round"/><line x1="6" y1="30" x2="26" y2="8" stroke="%23C98D51" stroke-width="2" stroke-linecap="round"/><polygon points="2,33 6,30 9,32" fill="%23263A38"/><circle cx="24" cy="7" r="4.5" fill="%23DBA872" stroke="%23263A38" stroke-width="1.4"/></svg>') 4 30, auto;
+}
+
+img{ max-width: 100%; display: block; }
+
+h1,h2,h3,h4{
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.08;
+  margin: 0 0 0.5em;
+  font-weight: 600;
+}
+h1{ font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 600; letter-spacing: -0.01em; }
+h2{ font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 600; }
+h3{ font-size: clamp(1.2rem, 2.2vw, 1.5rem); font-weight: 600; }
+
+p{ margin: 0 0 1em; color: var(--ink-soft); max-width: 62ch; }
+
+a{ color: var(--teal-700); text-decoration: none; }
+
+.hand{
+  font-family: var(--font-hand);
+  font-weight: 600;
+}
+
+.container{
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber-600);
+  margin-bottom: 0.9em;
+}
+
+.visually-hidden{
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* skip link */
+.skip-link{
+  position: absolute; left: -999px; top: 0;
+  background: var(--ink); color: var(--cream);
+  padding: 0.6em 1em; z-index: 999; border-radius: 0 0 8px 0;
+}
+.skip-link:focus{ left: 0; }
+
+:focus-visible{
+  outline: 3px solid var(--amber-500);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   HEADER / NAV
+   ========================================================= */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(244,238,224,0.86);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.05rem;
+  gap: 1rem;
+}
+
+.logo{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.logo .logo-mark{ width: 34px; height: 34px; flex-shrink: 0; }
+.logo .logo-dot{ color: var(--amber-600); }
+
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 2.1rem);
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+.nav-links a{
+  position: relative;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  padding-block: 0.3rem;
+}
+.nav-links a::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -2px;
+  height: 2px;
+  background: var(--amber-600);
+  transition: right 0.28s var(--ease);
+  border-radius: 2px;
+}
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after{
+  right: 0;
+}
+.nav-links a[aria-current="page"]{ color: var(--ink); }
+
+.nav-right{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* language toggle */
+.lang-toggle{
+  display: inline-flex;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 3px;
+  background: var(--cream);
+}
+.lang-toggle button{
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 0.32rem 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lang-toggle button[aria-pressed="true"]{
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.nav-toggle{
+  display: none;
+  border: 1.5px solid var(--ink);
+  background: var(--cream);
+  border-radius: 10px;
+  width: 42px; height: 38px;
+  cursor: pointer;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle svg{ width: 20px; height: 20px; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{
+  border-top: 1px solid var(--line);
+  background: var(--teal-900);
+  color: var(--paper);
+  margin-top: 6rem;
+}
+.footer-inner{
+  padding-block: 3rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+.footer-brand{
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.footer-tag{
+  font-family: var(--font-hand);
+  color: var(--amber-400);
+  font-size: 1.25rem;
+}
+.footer-links{
+  display: flex;
+  gap: 2.4rem;
+  flex-wrap: wrap;
+}
+.footer-col h4{
+  font-family: var(--font-body);
+  color: var(--amber-400);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.8em;
+}
+.footer-col a, .footer-col span{
+  display: block;
+  color: rgba(244,238,224,0.85);
+  font-size: 0.94rem;
+  margin-bottom: 0.5em;
+}
+.footer-col a{ text-decoration: none; }
+.footer-col a:hover{ color: var(--amber-400); }
+.footer-bottom{
+  border-top: 1px solid rgba(244,238,224,0.14);
+  padding-block: 1.2rem;
+  font-size: 0.82rem;
+  color: rgba(244,238,224,0.6);
+  text-align: center;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 0.85em 1.5em;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  cursor: pointer;
+  transition: transform 0.22s var(--ease), background 0.22s var(--ease), color 0.22s var(--ease), box-shadow 0.22s var(--ease);
+  text-decoration: none;
+}
+.btn:hover{
+  transform: translate(-2px,-2px);
+  box-shadow: 4px 4px 0 var(--amber-500);
+}
+.btn:active{ transform: translate(0,0); box-shadow: none; }
+
+.btn-outline{
+  background: transparent;
+  color: var(--ink);
+}
+.btn-outline:hover{ box-shadow: 4px 4px 0 var(--ink); background: var(--cream); }
+
+.btn-amber{
+  background: var(--amber-600);
+  border-color: var(--amber-600);
+  color: var(--cream);
+}
+.btn-amber:hover{ box-shadow: 4px 4px 0 var(--teal-900); }
+
+.btn-sm{ padding: 0.6em 1.1em; font-size: 0.85rem; }
+
+/* =========================================================
+   SHARED SECTION UTILITIES
+   ========================================================= */
+section{ padding-block: clamp(3rem, 7vw, 6rem); position: relative; }
+
+.section-band{
+  background: var(--teal-900);
+  color: var(--paper);
+}
+.section-band p{ color: rgba(244,238,224,0.82); }
+.section-band .eyebrow{ color: var(--amber-400); }
+
+.card{
+  background: var(--cream);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+}
+
+.tag{
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  background: var(--amber-100);
+  color: var(--amber-600);
+  border: 1px solid var(--amber-400);
+}
+
+/* doodle svg defaults */
+.doodle{ pointer-events: none; position: absolute; }
+.doodle path, .doodle circle, .doodle polyline{
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+}
+.doodle.in-view path,
+.doodle.in-view circle,
+.doodle.in-view polyline{
+  animation: draw 1.6s var(--ease) forwards;
+}
+@keyframes draw{ to{ stroke-dashoffset: 0; } }
+
+/* generic reveal-on-scroll */
+.reveal{
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.in-view{ opacity: 1; transform: translateY(0); }
+
+/* =========================================================
+   RESPONSIVE — NAV
+   ========================================================= */
+@media (max-width: 760px){
+  .nav-toggle{ display: inline-flex; order: 3; }
+  .nav-links{
+    position: fixed;
+    inset: 68px 0 0 0;
+    background: var(--paper);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem var(--gutter);
+    gap: 1.6rem;
+    transform: translateX(100%);
+    transition: transform 0.32s var(--ease);
+    height: calc(100vh - 68px);
+    overflow-y: auto;
+  }
+  .nav-links.open{ transform: translateX(0); }
+  .nav-links a{ font-size: 1.3rem; }
+  .nav-right{ order: 2; }
+  .footer-inner{ flex-direction: column; }
+}

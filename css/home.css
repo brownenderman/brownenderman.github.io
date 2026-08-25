@@ -1,0 +1,188 @@
+/* =========================================================
+   home.css — index.html only
+   ========================================================= */
+
+.hero{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4rem);
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(3rem, 6vw, 5rem);
+}
+
+.hero-name{ display: block; color: var(--amber-600); }
+
+.hero-role{
+  font-size: 1.5rem;
+  color: var(--teal-700);
+  margin-bottom: 1em;
+}
+
+.hero-intro{ font-size: 1.08rem; max-width: 46ch; }
+
+.hero-cta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.hero-portrait{
+  position: relative;
+  justify-self: center;
+  width: min(100%, 420px);
+}
+.hero-portrait .portrait-img{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 60%;
+  filter: drop-shadow(10px 16px 0 rgba(34,48,44,0.14));
+}
+.hero-doodle-circle{
+  position: absolute;
+  inset: -6% -8%;
+  z-index: 1;
+  width: 116%;
+  height: 116%;
+}
+.hero-doodle-hello{
+  width: 130px;
+  top: -6%;
+  right: -12%;
+  z-index: 3;
+}
+.hero-doodle-arrow{
+  width: 90px;
+  bottom: 6%;
+  left: -14%;
+  z-index: 3;
+}
+.hero-doodle-stars{
+  width: 60px;
+  top: 10%;
+  left: -10%;
+  z-index: 3;
+}
+
+@media (max-width: 900px){
+  .hero{ grid-template-columns: 1fr; text-align: center; }
+  .hero-cta{ justify-content: center; }
+  .hero-intro{ margin-inline: auto; }
+  .hero-portrait{ order: -1; width: min(72%, 320px); }
+  .hero-doodle-hello{ right: -4%; }
+  .hero-doodle-arrow{ display: none; }
+}
+
+/* ---------------- roles ---------------- */
+.roles-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.role-card svg{ margin-bottom: 0.9rem; }
+.role-sub{ font-size: 0.85rem; color: var(--sage-500); font-weight: 600; margin-bottom: 0.6em; }
+
+@media (max-width: 700px){
+  .roles-grid{ grid-template-columns: 1fr; }
+}
+
+/* ---------------- timeline (experience) ---------------- */
+.timeline{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.timeline-item{
+  padding-left: 1.6rem;
+  border-left: 3px solid var(--amber-400);
+  position: relative;
+}
+.timeline-item::before{
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 4px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--amber-600);
+  border: 2px solid var(--paper);
+}
+.timeline-item h3{ margin-bottom: 0.25em; font-size: 1.15rem; }
+.timeline-company{ color: var(--teal-700); font-family: var(--font-body); font-weight: 600; }
+.timeline-item .tag{ margin-bottom: 0.6em; }
+
+.link-more{
+  display: inline-block;
+  margin-top: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: 2px solid var(--amber-500);
+  padding-bottom: 2px;
+}
+.link-more:hover{ color: var(--amber-600); }
+
+/* ---------------- band ---------------- */
+.band{ text-align: center; }
+.band-quote{
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  color: var(--paper);
+  margin: 0;
+}
+
+/* ---------------- skills ---------------- */
+.skills-grid{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem 2rem;
+}
+.skill{
+  padding: 1.3rem 0;
+  border-top: 1.5px solid var(--line);
+}
+.skill-mark{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--amber-100);
+  color: var(--amber-600);
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  font-family: var(--font-display);
+}
+.skill h3{ font-size: 1.1rem; margin-bottom: 0.3em; }
+.skill p{ font-size: 0.94rem; }
+
+@media (max-width: 760px){
+  .skills-grid{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px){
+  .skills-grid{ grid-template-columns: 1fr; }
+}
+
+/* ---------------- projects teaser ---------------- */
+.teaser-card{
+  position: relative;
+  background: var(--paper-deep);
+  border: 1.5px dashed var(--teal-700);
+  border-radius: 20px;
+  padding: clamp(2rem, 5vw, 3.4rem);
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+  overflow: hidden;
+}
+.teaser-doodle{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  opacity: 0.6;
+}
+.teaser-card p{ margin-inline: auto; }
